@@ -22,12 +22,12 @@ def login(user: User, response: Response):
         response.set_cookie(key="Authorization", value=str(session_id), httponly=True)
         return "Logged in"
     else:
-        return "Nikal Lawde"
+        return "Wrong username/password"
     
 @app.get("/protected")
 def protected(authorized: bool = Depends(validate)):
     if not authorized:
-        return "protected! Login first"
+        return "Protected! Login first"
     
     return "Welcome to the protected route!"
 
