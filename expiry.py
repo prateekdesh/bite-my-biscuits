@@ -18,7 +18,8 @@ def setExpiry() -> str:
 def checkExpiry(request: Request) -> bool:
     current = getCurrent()[0]
     expiry = request.cookies.get("Expiry")
-    print(f"{current}, {expiry}")
+    if not expiry:
+        return True
     if float(current) > float(expiry):
         return True
     return False
